@@ -1,0 +1,100 @@
+{
+  "created": "2026-10-14",
+  "test_cases": 17,
+  "result": "All Node unit tests passed; preview scripts syntax-checked; native build not attempted.",
+  "not_verified": [
+    "upstream Git clone",
+    "iOS build",
+    "Xcode simulator launch",
+    "physical iPhone launch",
+    "real model call",
+    "production security"
+  ],
+  "files": [
+    {
+      "path": ".gitignore",
+      "size": 53,
+      "sha256": "321997d240bfe024dd76d067d011d41832c9a0820725e8ad4190892b68d0146a"
+    },
+    {
+      "path": "INSTALL_IPHONE.md",
+      "size": 10307,
+      "sha256": "3d94dd833268c845ce9cb1774ec176a48cb04e5bf5b2cec10de60bded3dd33fa"
+    },
+    {
+      "path": "LICENSE",
+      "size": 1134,
+      "sha256": "9ce410783e906b0909e818edb75aed7586a388152fd24bd392e44978e98fcdb3"
+    },
+    {
+      "path": "README.md",
+      "size": 3122,
+      "sha256": "986247fc460561e1677ebf9dae48e66e1d78057820c9dbcd73a387358beb1b10"
+    },
+    {
+      "path": "design/ARCHITECTURE.md",
+      "size": 5290,
+      "sha256": "d853dfc4a205b34cccf16bf5ee25dff097432eb58dfcb8feb6cd902567a7f025"
+    },
+    {
+      "path": "design/UI_SPEC.md",
+      "size": 4919,
+      "sha256": "dc5e018311d4de17b81608bfd34ac7a98133001337afddd76c2ca4ed2a99533d"
+    },
+    {
+      "path": "native/app/homedoc/HomeDocHub.svelte",
+      "size": 13946,
+      "sha256": "65bfc555dd3e8f81ef9c25b63f2941ddf17df093c2b8fecd4633c947dd61ed5a"
+    },
+    {
+      "path": "native/app/homedoc/analyzer.d.mts",
+      "size": 485,
+      "sha256": "e7ea0a488fdb174ff548e40c09e32d1ba3e5e09b70b02d1781320c66d562d695"
+    },
+    {
+      "path": "native/app/homedoc/analyzer.mjs",
+      "size": 5682,
+      "sha256": "9351fa08231054801cf1203ff1c032af31df8628b2a9c4845aaaa72e9727af90"
+    },
+    {
+      "path": "native/app/homedoc/store.ts",
+      "size": 1627,
+      "sha256": "1cf6f182cfb031c62e309de0bff8a7d424e3dff091678c34758a5b5b87cbeb50"
+    },
+    {
+      "path": "native/scripts/apply_overlay.py",
+      "size": 2280,
+      "sha256": "a2c5749dacfa7dac5452fa92952c87997fa1d4c2361a279a1ab4e4c1bef0ed43"
+    },
+    {
+      "path": "native/tests/analyzer.test.mjs",
+      "size": 2106,
+      "sha256": "0be4f920abeafae3e7240b6271e421494949d4e23628708c91a2f7cad1bad02d"
+    },
+    {
+      "path": "plan/EXECUTION.md",
+      "size": 3990,
+      "sha256": "1918a7428a0c6485bb5ba6358aec6489949695fb429ab60ab0f9b21ea2fc8285"
+    },
+    {
+      "path": "preview/HomeDocAI-Interactive-Demo.html",
+      "size": 28659,
+      "sha256": "9b64312f11243fb048bc2042e770ebf2e75ba064e1ec2ab43c634df15f15e28a"
+    },
+    {
+      "path": "preview/index.html",
+      "size": 22982,
+      "sha256": "e93c907b36f74036eb81805f35872ae9b4392096b2daf295e051cef507dc7d17"
+    },
+    {
+      "path": "server/index.mjs",
+      "size": 6946,
+      "sha256": "4bc80d12eb6dd5bf5c541bfe3554c7084bb6286ac2aad4ee5b58899afb4ea37f"
+    },
+    {
+      "path": "server/index.test.mjs",
+      "size": 2013,
+      "sha256": "746b219f6207ed1cb7f3d43edc93595efcfdec451cd1f1fc0aaa73c581933c84"
+    }
+  ]
+}

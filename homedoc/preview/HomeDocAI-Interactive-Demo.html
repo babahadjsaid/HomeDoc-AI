@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/><meta name="theme-color" content="#F5F7F6"/><title>HomeDoc AI — Interactive UX prototype</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;color:#17333c;background:#f5f7f6;font-synthesis:none}*{box-sizing:border-box}body{margin:0}button,input,textarea,select{font:inherit}button{cursor:pointer;border:0}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #82c6af;outline-offset:2px}.app{max-width:1100px;margin:0 auto;min-height:100svh;display:grid;grid-template-columns:260px 1fr}.side{background:#fff;border-right:1px solid #e5ebea;padding:32px 20px;display:flex;flex-direction:column;gap:26px}.logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:800;letter-spacing:-1px}.logo-icon{display:grid;place-items:center;background:#155b54;color:white;width:38px;height:38px;border-radius:12px}.side small{color:#819198;letter-spacing:1.5px;font-size:10px;font-weight:750}.nav{display:flex;flex-direction:column;gap:5px}.nav button{background:transparent;color:#65767b;padding:13px 15px;border-radius:12px;text-align:left;display:flex;align-items:center;gap:12px;font-weight:650}.nav button.active{color:#0f5e53;background:#e8f4ef}.nav button b{font-size:19px;width:21px;text-align:center;font-weight:400}.sidebar-foot{margin-top:auto;padding:16px;background:#f2f7f5;border-radius:14px;font-size:12px;line-height:1.6;color:#5f7376}.main{padding:28px clamp(16px,4vw,52px) 110px;min-width:0}.topline{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px}.eyebrow{font-weight:750;letter-spacing:1.5px;font-size:11px;color:#809093;text-transform:uppercase}.avatar{width:40px;height:40px;display:grid;place-items:center;border-radius:50%;background:#dfece7;color:#155b54;font-weight:750}.screen{display:none;animation:fade .2s ease}.screen.active{display:block}@keyframes fade{from{opacity:.2;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}h1{font-size:clamp(29px,4vw,42px);letter-spacing:-1.7px;line-height:1.1;margin:8px 0 12px}h2{font-size:18px;letter-spacing:-.4px;margin:0}p{line-height:1.55} .muted{color:#708184}.sub{font-size:14px;color:#708184;margin:0 0 24px}.hero{background:#143c41;color:#fff;border-radius:22px;padding:26px 28px;display:grid;grid-template-columns:1fr 155px;gap:20px;align-items:center;position:relative;overflow:hidden}.hero small{color:#a3d7c3;font-size:11px;font-weight:750;letter-spacing:1.6px}.hero h2{font-size:26px;max-width:440px;letter-spacing:-.8px;margin:11px 0}.hero p{color:#bfd2d0;font-size:13px;max-width:450px}.hero .art{width:138px;height:148px;position:relative;margin:auto;transform:rotate(-8deg)}.hero .sheet{position:absolute;width:108px;height:139px;background:#f3efe5;border-radius:10px;box-shadow:3px 8px 16px #06252d60;right:5px;top:6px;padding:17px}.sheet .line{display:block;height:7px;background:#d3dcd7;border-radius:7px;margin:13px 0}.sheet .line:first-child{background:#eab66a;width:55%}.sheet .line:nth-child(2){width:83%}.sheet .line:nth-child(3){width:95%}.sheet .line:nth-child(4){width:67%}.hero .art .stamp{position:absolute;right:-9px;bottom:5px;width:53px;height:53px;display:grid;place-items:center;background:#bfe8b9;border-radius:17px;color:#175249;font-size:29px;transform:rotate(13deg)}.hero button{background:#c5edc7;color:#154942;font-weight:750;padding:12px 19px;border-radius:10px;margin-top:8px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0 28px}.stat{background:white;border:1px solid #e8edeb;padding:20px;border-radius:16px}.stat b{font-size:30px;display:block;letter-spacing:-1.5px}.stat span{font-size:12px;color:#7c8b8a}.section-title{display:flex;align-items:center;justify-content:space-between;margin:27px 0 13px}.text-btn{background:none;color:#176b5d;font-weight:700;font-size:13px}.record{background:#fff;display:flex;align-items:center;gap:13px;border:1px solid #ebeeee;border-radius:14px;padding:14px;margin-bottom:9px;cursor:pointer;text-align:left;width:100%;color:inherit}.record:hover{border-color:#a4cfc4;transform:translateY(-1px)}.file-icon{width:44px;height:50px;border-radius:9px;background:#eff2fb;color:#7d79b1;display:grid;place-items:center;font-size:21px;flex-shrink:0}.file-icon.bill{background:#fff1df;color:#bb7b2f}.file-icon.warranty{background:#e7f4e9;color:#348363}.file-icon.insurance{background:#e9f1ff;color:#4c7abb}.file-icon.receipt{background:#f9e9f5;color:#ad619d}.details{min-width:0;flex:1}.details strong,.details small{display:block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.details strong{font-size:14px}.details small{font-size:12px;color:#83918e;margin-top:5px}.chip{border-radius:99px;background:#e9f5ef;color:#33765f;font-size:11px;padding:7px 10px;font-weight:750;white-space:nowrap}.chip.neutral{background:#f0f3f4;color:#778789}.chip.warn{background:#fff2dc;color:#a46a24}.arrow{color:#9babaa;font-size:19px}.row-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 22px}.primary{background:#145e55;color:#fff;padding:12px 18px;border-radius:11px;font-weight:750}.secondary{background:#e9f3ee;color:#165a50;padding:12px 16px;border-radius:11px;font-weight:700}.ghost{background:#fff;color:#5b7476;border:1px solid #dce5e1;padding:12px 16px;border-radius:11px}.danger{background:#fbece9;color:#a13f38;padding:10px 14px;border-radius:10px}.search{display:flex;align-items:center;background:white;border:1px solid #e1e8e5;border-radius:12px;padding:0 13px;gap:7px;flex:1}.search input{border:0;outline:none;width:100%;padding:13px 5px;color:#183c3c}.empty{padding:44px 20px;border:1px dashed #cbdbd5;background:#fff;border-radius:18px;text-align:center;color:#71817d}.empty .emoji{font-size:33px}.empty strong{display:block;color:#254d4b;margin:9px 0 6px}.panel{background:white;border:1px solid #e9edec;padding:24px;border-radius:18px}.layout-two{display:grid;grid-template-columns:1.2fr 0.8fr;gap:16px}.field{margin:16px 0}.field label{display:block;font-size:12px;font-weight:750;color:#647b79;margin-bottom:8px}.field input,.field textarea,.field select{width:100%;background:#fbfcfb;border:1px solid #dce6e1;padding:12px;border-radius:10px;color:#183b3a}.field textarea{min-height:190px;resize:vertical;line-height:1.55}.hint{font-size:11px;color:#879694;margin:8px 0}.warnbox{border:1px solid #efd7aa;background:#fff9eb;color:#866323;padding:12px 15px;border-radius:12px;font-size:12px;line-height:1.5;margin:12px 0}.successbox{background:#ecf7ed;color:#2a7658;border-radius:12px;padding:13px 15px;font-size:12px;line-height:1.5}.footnote{font-size:12px;color:#90a09e;margin:25px 0}.tabbar{display:none}.icon-square{width:36px;height:36px;display:grid;place-items:center;border-radius:10px;background:#e6f4ef;color:#246b5a}.review-header{display:flex;align-items:center;gap:10px}.review-header button{font-size:20px;background:transparent;color:#506a64}.divider{border-top:1px solid #edf0ef;margin:18px 0}.help-list{font-size:13px;color:#6d8580;line-height:1.7;margin:9px 0;padding-left:20px}.small-note{font-size:12px;color:#6c8580}button[disabled]{opacity:.55;cursor:not-allowed}
+@media(max-width:780px){.app{display:block;max-width:540px}.side{display:none}.main{padding:20px 17px 103px}.topline{margin-bottom:24px}.hero{padding:24px 20px;grid-template-columns:1fr 90px;gap:5px}.hero h2{font-size:22px}.hero .art{transform:scale(.68) rotate(-8deg);margin-left:-35px}.hero .sheet{right:auto}.stats{gap:8px;margin:15px 0}.stat{padding:14px 13px}.stat b{font-size:25px}.layout-two{grid-template-columns:1fr}.tabbar{position:fixed;display:flex;bottom:0;left:0;right:0;justify-content:space-around;background:#fffffffa;border-top:1px solid #e8efed;padding:10px 12px calc(11px + env(safe-area-inset-bottom));z-index:4;box-shadow:0 -8px 30px #1d403a0a}.tabbar button{display:flex;flex-direction:column;gap:4px;align-items:center;color:#83928d;background:transparent;font-size:10px;font-weight:650;flex:1}.tabbar button b{font-size:20px;font-weight:400}.tabbar button.active{color:#156e5b}.chip{font-size:10px}.record{padding:12px}.topline .eyebrow{font-size:10px}}
+@media(max-width:340px){.hero .art{display:none}.hero{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,1fr)}.stat{padding:10px 7px}.stat b{font-size:22px}}
+</style></head><body>
+<div class="app"><aside class="side"><div class="logo"><span class="logo-icon">▤</span> HomeDoc<span style="color:#64a88f">AI</span></div><div><small>WORKSPACE</small><div class="nav" id="desktopNav"><button data-nav="home" class="active"><b>⌂</b> Overview</button><button data-nav="documents"><b>▤</b> Documents</button><button data-nav="reminders"><b>▦</b> Deadlines</button><button data-nav="privacy"><b>⚙</b> Privacy & settings</button></div></div><div class="sidebar-foot"><strong>Prototype · Local only</strong><p>Try the flow with sample or pasted OCR. Data stays in this browser's local storage.</p><span>Built to integrate with OSS Document Scanner.</span></div></aside>
+<main class="main"><header class="topline"><span class="eyebrow">YOUR PRIVATE DOCUMENT SPACE</span><span class="avatar" aria-label="Prototype">HD</span></header>
+<section class="screen active" id="view-home"><span class="eyebrow">YOUR HOME, IN ORDER</span><h1>Everything important.<br>All in one place.</h1><p class="sub">Paperwork made easier — from scan to a reminder you can trust.</p><div class="hero"><div><small>MEET YOUR DOCUMENT ASSISTANT</small><h2>No more missed dates in the paperwork.</h2><p>Review extracted details, confirm important dates and keep your household organized.</p><button data-nav="add">+ Add document</button></div><div class="art" aria-hidden="true"><div class="sheet"><span class="line"></span><span class="line"></span><span class="line"></span><span class="line"></span></div><div class="stamp">✓</div></div></div><div class="stats"><div class="stat"><b id="stat-docs">0</b><span>Documents</span></div><div class="stat"><b id="stat-due">0</b><span>Deadlines</span></div><div class="stat"><b id="stat-review">0</b><span>To review</span></div></div><div class="section-title"><h2>Upcoming reminders</h2><button class="text-btn" data-nav="reminders">View all →</button></div><div id="home-list"></div><div class="section-title"><h2>Recently added</h2><button class="text-btn" data-nav="documents">All documents →</button></div><div id="recent-list"></div></section>
+<section class="screen" id="view-documents"><span class="eyebrow">YOUR LIBRARY</span><h1>Documents</h1><p class="sub">Browse scanned paperwork and review extracted details.</p><div class="row-actions"><div class="search"><span>⌕</span><input id="search" placeholder="Search documents..." aria-label="Search documents"></div><button class="primary" data-nav="add">+ Add</button></div><div id="doc-list"></div></section>
+<section class="screen" id="view-add"><button class="text-btn" data-nav="documents">← Back to documents</button><h1>Import OCR text</h1><p class="sub">Development demo: paste text already extracted from a scan. No image recognition runs in this browser.</p><div class="layout-two"><div class="panel"><div class="field"><label for="docname">Document title</label><input id="docname" placeholder="e.g. Electricity bill — October"></div><div class="field"><label for="ocrtext">OCR text</label><textarea id="ocrtext" placeholder="Paste the scanned text here. Example:\nElectricity invoice\nDue date: 2026-11-25\nAmount due: €52.40"></textarea></div><button id="analyze" class="primary" style="width:100%">Analyze text →</button><div id="add-error" class="warnbox" hidden></div></div><div class="panel" style="align-self:start"><div class="icon-square">◎</div><h2 style="margin:12px 0">Test with realistic examples</h2><p class="small-note">Use synthetic sample documents without sharing private information.</p><button id="example-bill" class="secondary" style="width:100%;margin:8px 0">Example: utility bill</button><button id="example-warranty" class="ghost" style="width:100%;margin:8px 0">Example: warranty</button><button id="example-ambiguous" class="ghost" style="width:100%;margin:8px 0">Example: ambiguous date</button><div class="divider"></div><p class="small-note">The native app connects this step to the scanner's existing OCR output. This browser version only accepts text.</p></div></div></section>
+<section class="screen" id="view-review"><button class="text-btn" data-nav="documents">← Documents</button><h1>Review suggestions</h1><p class="sub">You are always in control. We never automatically schedule a deadline from unverified text.</p><div class="layout-two"><div class="panel"><div class="eyebrow">REVIEW REQUIRED</div><div id="warnings"></div><div class="field"><label for="review-title">Document title</label><input id="review-title"></div><div class="field"><label for="review-category">Category</label><select id="review-category"><option value="bill">Bill</option><option value="receipt">Receipt</option><option value="warranty">Warranty</option><option value="insurance">Insurance</option><option value="letter">Letter</option><option value="other">Other</option></select></div><div class="field"><label for="review-date">Due or expiry date</label><input id="review-date" type="date"><p class="hint">Leave blank when no reliable date exists.</p></div><div class="layout-two" style="grid-template-columns:1.4fr 1fr;gap:10px"><div class="field"><label for="review-amount">Amount (optional)</label><input id="review-amount" placeholder="0.00" inputmode="decimal"></div><div class="field"><label for="review-currency">Currency</label><select id="review-currency"><option value="">Unknown</option><option>EUR</option><option>USD</option><option>GBP</option></select></div></div><div id="review-error" class="warnbox" hidden></div><button class="primary" id="save" style="width:100%">✓ Confirm and save</button><p class="hint">Stored only in this browser for the prototype. No automatic push notifications.</p></div><div class="panel" style="align-self:start"><div class="eyebrow">EXTRACTED SOURCE</div><h2 style="margin:12px 0" id="ocr-doc-title"></h2><pre id="source-preview" style="white-space:pre-wrap;word-break:break-word;font-size:12px;line-height:1.8;color:#536e6d;background:#f5f8f7;padding:15px;border-radius:10px;max-height:420px;overflow:auto"></pre><p class="hint">Compare every suggested field with the original scan.</p></div></div></section>
+<section class="screen" id="view-reminders"><span class="eyebrow">WHAT'S NEXT</span><h1>Important dates</h1><p class="sub">Only deadlines you personally confirmed appear here.</p><div id="due-list"></div><div class="panel" style="margin-top:20px"><h2>Calendar export</h2><p class="small-note">Download an iCalendar file of your confirmed deadlines. Open it with Calendar on your phone to add events. This does not create events automatically.</p><button class="secondary" id="export" style="margin-top:10px">⇩ Export calendar (.ics)</button></div></section>
+<section class="screen" id="view-privacy"><span class="eyebrow">SECURITY & CONTROLS</span><h1>Privacy first</h1><p class="sub">This test interface performs OCR-text analysis locally and does not make AI network requests.</p><div class="panel"><h2>What this demo stores</h2><ul class="help-list"><li>Document title, manually confirmed fields, and pasted OCR text (in browser localStorage).</li><li>No scanned images or API keys.</li><li>Data can be cleared in one step.</li></ul><div class="warnbox">This web prototype uses browser storage, not encrypted secure storage. Use invented sample documents, not sensitive real records.</div><button id="clear" class="danger">Delete all demo data</button></div></section>
+<footer class="footnote">HomeDoc AI · Functional UX prototype · Offline rules, not an AI model · Not a production security implementation</footer>
+</main><nav class="tabbar" id="mobileNav" aria-label="Bottom navigation"><button data-nav="home" class="active"><b>⌂</b> Home</button><button data-nav="documents"><b>▤</b> Documents</button><button data-nav="add"><b>⊕</b> Add</button><button data-nav="reminders"><b>▦</b> Dates</button><button data-nav="privacy"><b>⚙</b> Settings</button></nav></div>
+<script type="module">
+// Inlined offline extractor so this one-file demonstration has no external dependencies.
+/**
+ * HomeDoc AI — conservative, offline OCR hints (no model calls).
+ * This module MUST NOT invent missing fields. Every suggestion is editable.
+ * MIT, HomeDoc starter. Does not use the original scanner's code.
+ */
+const LABEL_DATE = /(?:due\s*date|payment\s*due|pay\s*by|payable\s*before|expiry\s*date|expires?\s*(?:on)?|valid\s*until|warranty\s*until|scadenza|da\s*pagare\s*entro|entro\s*il|data\s*di\s*scadenza|date\s*d['’]échéance|échéance|avant\s*le|fecha\s*de\s*vencimiento|vencimiento)/i;
+const ISO_DATE = /\b(20\d\d|19\d\d)[-/.](0?[1-9]|1[0-2])[-/.](0?[1-9]|[12]\d|3[01])\b/g;
+const DAY_DATE = /\b(0?[1-9]|[12]\d|3[01])([/.\-])(0?[1-9]|1[0-2])\2(20\d\d|19\d\d)\b/g;
+const MONEY_LABEL = /(?:amount\s*due|total\s*(?:due|payable)|balance\s*due|importo\s*da\s*pagare|totale\s*da\s*pagare|montant\s*(?:à\s*payer|du)|net\s*à\s*payer|total\s*à\s*payer|importe\s*total)/i;
+const CATEGORIES = [
+  ['bill', /\b(invoice|bill|utility|electricity|gas|fattura|bolletta|facture|rechnu?ng)\b/i],
+  ['warranty', /\b(warranty|guarantee|garanzia|garantie)\b/i],
+  ['insurance', /\b(insurance|policy|assicurazione|polizza|assurance)\b/i],
+  ['receipt', /\b(receipt|scontrino|ricevuta|ticket\s*de\s*caisse)\b/i],
+  ['letter', /\b(letter|notification|lettera|comunicazione|courrier)\b/i],
+];
+const pad = v => String(v).padStart(2, '0');
+function toISO(year, month, day) {
+  const dt = new Date(Date.UTC(year, month - 1, day));
+  if (dt.getUTCFullYear() !== year || dt.getUTCMonth() !== month - 1 || dt.getUTCDate() !== day) return null;
+  return `${year}-${pad(month)}-${pad(day)}`;
+}
+function dateTokens(line) {
+  const found = [];
+  for (const m of line.matchAll(ISO_DATE)) {
+    const date = toISO(+m[1], +m[2], +m[3]);
+    if (date) found.push({date, raw:m[0], ambiguous:false});
+  }
+  for (const m of line.matchAll(DAY_DATE)) {
+    const day = +m[1], month = +m[3], year = +m[4];
+    const date = toISO(year, month, day);
+    if (date) found.push({date, raw:m[0], ambiguous:day <= 12 && month <= 12 && day !== month});
+  }
+  return found;
+}
+function parseMoney(candidate) {
+  let raw = candidate.replace(/\s/g, '').replace(/[€$£]/g,'');
+  if (!/^\d[\d.,]*$/.test(raw)) return null;
+  const comma = raw.lastIndexOf(','), dot = raw.lastIndexOf('.');
+  const sep = Math.max(comma, dot);
+  if (sep >= 0) {
+    const decimals = raw.length - sep - 1;
+    if (decimals === 2) raw = raw.slice(0, sep).replace(/[.,]/g, '') + '.' + raw.slice(sep + 1);
+    else if (decimals === 3 && /^\d{1,3}$/.test(raw.slice(sep + 1))) raw = raw.replace(/[.,]/g,'');
+    else if (decimals === 0 || decimals > 3) return null;
+    else if (decimals === 1) raw = raw.slice(0, sep).replace(/[.,]/g, '') + '.' + raw.slice(sep + 1);
+  }
+  const value = Number(raw);
+  return Number.isFinite(value) && value >= 0 && value <= 1e9 ? value : null;
+}
+export function analyzeOcrText(text, name = 'Untitled document') {
+  const lines = String(text || '').replace(/\r/g,'').split('\n').map(line => line.trim()).filter(Boolean);
+  const joined = lines.join(' ').slice(0, 50000);
+  const category = CATEGORIES.find(([, regex]) => regex.test(joined))?.[0] || 'other';
+  const warnings = [];
+  const candidateDates = [];
+  for (let i = 0; i < lines.length; i++) {
+    if (!LABEL_DATE.test(lines[i])) continue;
+    for (const line of [lines[i], lines[i + 1] || '']) {
+      for (const d of dateTokens(line)) candidateDates.push({...d, source:lines[i]});
+    }
+  }
+  const uniqueDates = [...new Map(candidateDates.map(d => [d.date, d])).values()];
+  let dueDate = '';
+  if (uniqueDates.length === 1) {
+    if (uniqueDates[0].ambiguous) warnings.push(`Ambiguous date format: ${uniqueDates[0].raw}. Enter and verify the due date manually.`);
+    else dueDate = uniqueDates[0].date;
+  } else if (uniqueDates.length > 1) {
+    warnings.push('Several deadline dates were found. Verify the correct one manually.');
+  }
+  let amount = '', currency = '';
+  for (let i = 0; i < lines.length; i++) {
+    if (!MONEY_LABEL.test(lines[i])) continue;
+    const chunk = (lines[i] + ' ' + (lines[i+1] || '')).slice(0, 250);
+    const labelMatch = MONEY_LABEL.exec(chunk);
+    const suffix = chunk.slice((labelMatch?.index || 0) + (labelMatch?.[0]?.length || 0));
+    // Currency sign optional, but require explicit amount label. Avoid invoice numbers.
+    const match = suffix.match(/(?:EUR|USD|GBP|€|\$|£)?\s*(\d{1,3}(?:[.,\s]\d{3})+(?:[.,]\d{2})?|\d{1,9}(?:[.,]\d{2})?)(?:\s*(EUR|USD|GBP|€|\$|£))?/i);
+    if (!match) continue;
+    const value = parseMoney(match[1]);
+    if (value === null) continue;
+    amount = value.toFixed(2);
+    const label = (suffix.slice(0, match.index) + ' ' + (match[2] || '')).toUpperCase();
+    currency = /€|EUR/.test(chunk.toUpperCase()) ? 'EUR' : /\$|USD/.test(chunk.toUpperCase()) ? 'USD' : /£|GBP/.test(chunk.toUpperCase()) ? 'GBP' : '';
+    break;
+  }
+  if (lines.length === 0) warnings.push('No OCR text found. Run OCR in the scanner before analyzing this document.');
+  if (!dueDate && candidateDates.length === 0) warnings.push('No clearly labelled deadline was found.');
+  if (!currency && amount) warnings.push('Currency not verified.');
+  return {title:String(name || 'Untitled document').slice(0,150),category,dueDate,amount,currency,
+    evidence:{dueDate:uniqueDates[0]?.source || '', amount:amount ? 'OCR total/amount label' : ''},
+    warnings, source:'offline-rules', reviewRequired:true};
+}
+export function isValidIsoDate(s) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(s||''));
+  return !!m && !!toISO(+m[1], +m[2], +m[3]);
+}
+export function sortByDueDate(records) {
+  return [...records].sort((a,b) => (a.dueDate || '9999').localeCompare(b.dueDate || '9999'));
+}
+
+const KEY='homedoc.prototype.v1';
+const $=id=>document.getElementById(id), escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let data=load(), active=null, view='home';
+function load(){try {const d=JSON.parse(localStorage.getItem(KEY)||'[]');return Array.isArray(d)?d:[]}catch{return[]}}
+function persist(){localStorage.setItem(KEY,JSON.stringify(data))}
+function navigate(id){view=id;document.querySelectorAll('.screen').forEach(e=>e.classList.toggle('active',e.id==='view-'+id));document.querySelectorAll('[data-nav]').forEach(e=>e.classList.toggle('active',e.dataset.nav===id));render();window.scrollTo({top:0,behavior:'instant'});}
+function displayDate(d){return d?new Date(`${d}T12:00:00`).toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'}):'No date'}
+function dateStatus(d){if(!d)return 'No date';const days=Math.ceil((new Date(d+'T12:00:00')-new Date())/86400000);return days<0?'Past due':days<=7?'Soon':'Confirmed'}
+function listCard(d){const status=d.confirmed?(d.dueDate?dateStatus(d.dueDate):'Saved'):'To review';const cls=d.confirmed?(status==='Soon'?'warn':status==='Past due'?'neutral':''):'neutral';return `<button class="record" data-doc="${escape(d.id)}"><span class="file-icon ${escape(d.category||'other')}">▤</span><span class="details"><strong>${escape(d.title)}</strong><small>${escape(d.category||'other')} · ${d.dueDate?displayDate(d.dueDate):'No confirmed date'}</small></span><span class="chip ${cls}">${escape(status)}</span><span class="arrow">›</span></button>`}
+function makeEmpty(title,subtitle){return `<div class="empty"><div class="emoji">▧</div><strong>${title}</strong>${subtitle}</div>`}
+function render(){const confirmed=data.filter(d=>d.confirmed);const due=sortByDueDate(confirmed.filter(d=>d.dueDate));$('stat-docs').textContent=data.length;$('stat-due').textContent=due.length;$('stat-review').textContent=data.length-confirmed.length;
+$('home-list').innerHTML=due.length?due.slice(0,3).map(listCard).join(''):makeEmpty('Nothing due yet','Once you confirm a deadline, it will show up here.');$('recent-list').innerHTML=data.length?[...data].reverse().slice(0,3).map(listCard).join(''):makeEmpty('Your space is ready','Add an example to see how HomeDoc works.');
+const q=$('search').value.toLowerCase().trim();const results=[...data].reverse().filter(d=>(d.title+' '+d.ocr).toLowerCase().includes(q));$('doc-list').innerHTML=results.length?results.map(listCard).join(''):makeEmpty('No documents found',data.length?'Try another search.':'Add a document to get started.');
+$('due-list').innerHTML=due.length?due.map(listCard).join(''):makeEmpty('All clear','No confirmed dates at the moment.');$('export').disabled=!due.length;}
+function review(d){active=d;const hints=analyzeOcrText(d.ocr,d.title);$('review-title').value=d.title;$('review-category').value=d.confirmed?d.category:hints.category;$('review-date').value=d.confirmed?d.dueDate:hints.dueDate;$('review-amount').value=d.confirmed?d.amount:hints.amount;$('review-currency').value=d.confirmed?d.currency:hints.currency;$('ocr-doc-title').textContent=d.title;$('source-preview').textContent=d.ocr;
+$('warnings').innerHTML=hints.warnings.map(w=>`<div class="warnbox">⚠ ${escape(w)}</div>`).join('') || '<div class="successbox">Possible fields extracted. Verify each against the source.</div>';$('review-error').hidden=true;navigate('review');}
+document.addEventListener('click',e=>{const nav=e.target.closest('[data-nav]');if(nav){navigate(nav.dataset.nav);return;}const item=e.target.closest('[data-doc]');if(item){const rec=data.find(x=>x.id===item.dataset.doc);if(rec)review(rec)}});
+$('search').addEventListener('input',render);
+function fill(title,ocr){$('docname').value=title;$('ocrtext').value=ocr;}
+$('example-bill').onclick=()=>fill('Electricity bill — October', 'Electricity invoice\nSupplier: Sample Energy\nIssue date: 2026-10-12\nPayment due: 2026-11-25\nAmount due: € 52,40\nAccount: EXAMPLE-001');
+$('example-warranty').onclick=()=>fill('Laptop warranty', 'Warranty document\nItem: Laptop computer\nWarranty until: 2028-06-25\nKeep this document as proof of purchase.');
+$('example-ambiguous').onclick=()=>fill('Uncertain deadline','Bill\nDue date: 01/10/2026\nAmount due: $12.99\nPlease verify the regional date format.');
+$('analyze').onclick=()=>{const title=$('docname').value.trim(),ocr=$('ocrtext').value.trim();if(!title||!ocr){$('add-error').textContent='Please enter a title and some OCR text.';$('add-error').hidden=false;return;}$('add-error').hidden=true;const rec={id:globalThis.crypto?.randomUUID?.()||String(Date.now()),title,ocr,category:'other',dueDate:'',amount:'',currency:'',confirmed:false};data.push(rec);persist();review(rec)};
+$('save').onclick=()=>{if(!active)return;const title=$('review-title').value.trim(),date=$('review-date').value;const amount=$('review-amount').value.trim();if(!title||date&&!isValidIsoDate(date)||amount&&!/^\d+(\.\d{1,2})?$/.test(amount)){const el=$('review-error');el.textContent='Enter a title, a valid date and a nonnegative amount with up to two decimals.';el.hidden=false;return;}Object.assign(active,{title,category:$('review-category').value,dueDate:date,amount,currency:$('review-currency').value,confirmed:true});persist();navigate('home');};
+$('clear').onclick=()=>{if(!confirm('Delete all HomeDoc demo data from this browser?'))return;data=[];persist();navigate('home')};
+$('export').onclick=()=>{const due=sortByDueDate(data.filter(d=>d.confirmed&&d.dueDate));if(!due.length)return;function icsSafe(s){return String(s).replace(/\\/g,'\\\\').replace(/\r?\n/g,'\\n').replace(/,/g,'\\,').replace(/;/g,'\\;')}
+const stamp=new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d+Z/,'Z');let lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//HomeDoc AI//Prototype//EN','CALSCALE:GREGORIAN'];for(const d of due){const dt=d.dueDate.replaceAll('-','');lines.push('BEGIN:VEVENT',`UID:${icsSafe(d.id)}@homedoc-local`, `DTSTAMP:${stamp}`,`DTSTART;VALUE=DATE:${dt}`,`SUMMARY:${icsSafe('HomeDoc: '+d.title)}`,'DESCRIPTION:User-confirmed deadline. Verify original document.','END:VEVENT');}lines.push('END:VCALENDAR');const blob=new Blob([lines.join('\r\n')+'\r\n'],{type:'text/calendar;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='homedoc-reminders.ics';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
+render();</script></body></html>

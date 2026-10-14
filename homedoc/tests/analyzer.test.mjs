@@ -1,0 +1,14 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { analyzeOcrText, isValidIsoDate, sortByDueDate } from '../../app/homedoc/analyzer.mjs';
+test('no OCR does not fabricate a deadline',()=>{const r=analyzeOcrText('','Invoice');assert.equal(r.dueDate,'');assert.equal(r.reviewRequired,true);assert.ok(r.warnings.length);});
+test('known ISO due date from bill',()=>{const r=analyzeOcrText('Invoice\nPayment due: 2026-11-25\nAmount due: € 52,40','Electricity');assert.equal(r.dueDate,'2026-11-25');assert.equal(r.category,'bill');assert.equal(r.amount,'52.40');assert.equal(r.currency,'EUR');});
+test('Italian unambiguous date',()=>{const r=analyzeOcrText('Bolletta\nScadenza 24/11/2026','Bol');assert.equal(r.dueDate,'2026-11-24');});
+test('ambiguous dates require manual review',()=>{const r=analyzeOcrText('Due date: 01/10/2026');assert.equal(r.dueDate,'');assert.match(r.warnings.join(' '),/Ambiguous/);});
+test('invalid date rejected',()=>{const r=analyzeOcrText('Due date: 2026-02-30');assert.equal(r.dueDate,'');assert.equal(isValidIsoDate('2024-02-29'),true);assert.equal(isValidIsoDate('2025-02-29'),false);});
+test('unlabelled date ignored',()=>{const r=analyzeOcrText('Invoice issued 2026-09-17');assert.equal(r.dueDate,'');});
+test('several due dates not silently resolved',()=>{const r=analyzeOcrText('Due date 2026-12-01\nValid until 2028-01-01');assert.equal(r.dueDate,'');assert.match(r.warnings.join(' '),/Several/);});
+test('European thousands and decimals',()=>{const r=analyzeOcrText('Fattura\nImporto da pagare: 1.234,56 EUR');assert.equal(r.amount,'1234.56');});
+test('US thousands and decimals',()=>{const r=analyzeOcrText('Bill\nAmount due: $1,234.56');assert.equal(r.amount,'1234.56');});
+test('expiry is recognized',()=>{const r=analyzeOcrText('Garanzia\nWarranty until: 2028-09-01');assert.equal(r.category,'warranty');assert.equal(r.dueDate,'2028-09-01');});
+test('sort missing due dates last',()=>{const r=sortByDueDate([{dueDate:''},{dueDate:'2027-01-01'},{dueDate:'2026-12-01'}]);assert.deepEqual(r.map(x=>x.dueDate),['2026-12-01','2027-01-01','']);});
