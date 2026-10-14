@@ -62,7 +62,7 @@ jobs:
           curl --fail --location --retry 3 --retry-delay 5 \
             https://github.com/ossappscollective/OSS-DocumentScanner/releases/download/dev_resources/ios.zip \
             --output /tmp/homedoc-ios-frameworks.zip
-          unzip -q /tmp/homedoc-ios-frameworks.zip -d .
+          unzip -o -q /tmp/homedoc-ios-frameworks.zip -d .
           du -sh opencv/ios tesseract/ios
       - name: Build HomeDoc iOS Simulator app (no signing)
         run: |
