@@ -256,11 +256,11 @@
             <label text="Category" color={muted} fontSize="12" marginTop="12"/>
             <mdbutton text={'Category: '+draft.category+'  ▾'} color={accent} backgroundColor={mint} on:tap={cycleCat}/>
             <label text="Due date (YYYY-MM-DD)" color={muted} fontSize="12" marginTop="12"/>
-            <textField text={draft.dueDate} hint="2027-07-31" backgroundColor="#F5F8F7" borderRadius="9" padding="10" on:textChange={e=>update('dueDate',e.object.text)}/>
+            <textField text={draft.dueDate} backgroundColor="#F5F8F7" borderRadius="9" padding="10" on:textChange={e=>update('dueDate',e.object.text)}/>
             <label text="Amount" color={muted} fontSize="12" marginTop="12"/>
-            <textField text={draft.amount} hint="73.20" keyboardType="number" backgroundColor="#F5F8F7" borderRadius="9" padding="10" on:textChange={e=>update('amount',e.object.text)}/>
+            <textField text={draft.amount} keyboardType="number" backgroundColor="#F5F8F7" borderRadius="9" padding="10" on:textChange={e=>update('amount',e.object.text)}/>
             <label text="Currency" color={muted} fontSize="12" marginTop="12"/>
-            <textField text={draft.currency} hint="EUR" backgroundColor="#F5F8F7" borderRadius="9" padding="10" on:textChange={e=>update('currency',e.object.text)}/>
+            <textField text={draft.currency} backgroundColor="#F5F8F7" borderRadius="9" padding="10" on:textChange={e=>update('currency',e.object.text)}/>
             <mdbutton text="✓ Confirm and save" color={white} backgroundColor={accent} marginTop="16" on:tap={save}/>
             {#if reviewedIds.includes(active.id)}
               <mdbutton text="Remove this review" color="#A13F38" backgroundColor="#FBECE9" marginTop="8" on:tap={forgetRecord}/>
