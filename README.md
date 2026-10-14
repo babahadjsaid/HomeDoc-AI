@@ -9,6 +9,7 @@
 - Conservative offline extraction of due dates, document types and amounts; manual confirmation before saving.
 - Optional **development-only** AI proxy in `homedoc/server`, not enabled by default.
 - A standalone browser UI demonstration at `homedoc/preview/index.html`.
+- HomeDoc Settings offers **Low / Medium / High** OCR quality backed by real Tesseract fast / standard / best trained-data models, with per-quality language downloads.
 
 ## Android build and emulator
 

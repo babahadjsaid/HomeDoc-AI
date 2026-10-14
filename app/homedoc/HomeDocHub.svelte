@@ -4,6 +4,8 @@
     import { navigate } from '@shared/utils/svelte/ui';
     import CActionBar from '~/components/common/CActionBar.svelte';
     import { documentsService } from '~/services/documents';
+    import { OCRLanguages, ocrService } from '~/services/ocr';
+    import { checkOrDownloadOCRLanguages } from '~/utils/ui';
     import { analyzeOcrText, isValidIsoDate } from './analyzer.mjs';
     import { getRecords, removeRecord, upsertRecord, type HomeDocCategory, type HomeDocRecord } from './store';
 
@@ -21,6 +23,10 @@
     let hints:ReturnType<typeof analyzeOcrText>|null=null;
     let loading=false,error='',q='';
     let manualTitle='',manualText='',aiBusy=false;
+    type OCRQuality = 'fast' | 'standard' | 'best';
+    let ocrQuality: OCRQuality = ocrService.dataType || 'best';
+    let ocrDownloading = false;
+    let ocrInstalled = ocrService.languagesArray.every(lang=>ocrService.downloadedLanguages.includes(lang));
     let draft={title:'',category:'other' as HomeDocCategory,dueDate:'',amount:'',currency:''};
 
     $: deadlines=reviews.filter(r=>r.dueDate).sort((a,b)=>a.dueDate.localeCompare(b.dueDate));
@@ -29,6 +35,36 @@
         .concat(reviews.filter(r=>r.documentId.startsWith('manual-')&&!docs.some(d=>d.id===r.documentId) && r.title.toLowerCase().includes(q.toLowerCase()))
             .map(r=>({id:r.documentId,name:r.title,text:'',pageCount:0,manual:true})));
     $: recent=docs.length?docs.slice(-3).reverse():library.slice(-3).reverse();
+
+    $: ocrLanguageNames = ocrService.languagesArray.map(lang => OCRLanguages[lang] || lang).join(', ');
+    $: ocrQualityDescription = ocrQuality === 'fast' ? 'Fastest; best for clear, printed text.' : ocrQuality === 'standard' ? 'Balanced speed and recognition detail.' : 'Most accurate Tesseract model; larger and slower.';
+
+    function selectOCRQuality(mode: OCRQuality) {
+        ocrService.dataType = mode;
+        ocrQuality = mode;
+        ocrInstalled = ocrService.languagesArray.every(lang => ocrService.downloadedLanguages.includes(lang));
+    }
+
+    async function downloadOCRModels() {
+        if (ocrDownloading) return;
+        ocrDownloading = true;
+        try {
+            const result = await checkOrDownloadOCRLanguages({
+                dataType: ocrQuality,
+                languages: ocrService.languagesArray,
+                shouldConfirm: true
+            });
+            ocrInstalled = ocrService.languagesArray.every(lang => ocrService.downloadedLanguages.includes(lang));
+            if (result && ocrInstalled) {
+                await alert({ title: 'OCR ready', message: 'Language files for this quality are installed on the device.', okButtonText: 'OK' });
+            }
+        } catch (cause) {
+            console.log('HomeDoc OCR model download', cause);
+            await alert({ title: 'Download unavailable', message: 'Could not prepare the OCR language files. Check the network connection and try again.', okButtonText: 'OK' });
+        } finally {
+            ocrDownloading = false;
+        }
+    }
 
     onMount(()=>{refresh();});
     async function openScanner(){
@@ -236,6 +272,29 @@
           <label text="SECURITY & CONTROLS" color={muted} fontSize="11" fontWeight="700"/>
           <label text="Privacy first" color={ink} fontWeight="700" fontSize="29" marginTop="7"/>
           <label text="Offline extraction happens on your device. Cloud AI remains optional and requires your consent." color={muted} fontSize="13" textWrap={true} marginTop="8" marginBottom="19"/>
+          <stacklayout backgroundColor={white} borderRadius="16" padding="17" marginBottom="15">
+            <label text="OCR quality" color={ink} fontSize="19" fontWeight="700"/>
+            <label text="Choose a real offline Tesseract model for future document scans." color={muted} fontSize="12" textWrap={true} marginTop="6" marginBottom="15"/>
+            <gridlayout columns="*,*,*" columnSpacing="8">
+              <stacklayout col={0} on:tap={()=>selectOCRQuality('fast')} backgroundColor={ocrQuality==='fast'?mint:'#F6F8F7'} borderWidth="1" borderColor={ocrQuality==='fast'?accent:'#E1E9E5'} borderRadius="12" padding="12">
+                <label text={ocrQuality==='fast'?'✓ Low':'Low'} textAlignment="center" color={accent} fontWeight="700" fontSize="15"/>
+                <label text="Fast" textAlignment="center" color={muted} fontSize="11" marginTop="5"/>
+              </stacklayout>
+              <stacklayout col={1} on:tap={()=>selectOCRQuality('standard')} backgroundColor={ocrQuality==='standard'?mint:'#F6F8F7'} borderWidth="1" borderColor={ocrQuality==='standard'?accent:'#E1E9E5'} borderRadius="12" padding="12">
+                <label text={ocrQuality==='standard'?'✓ Medium':'Medium'} textAlignment="center" color={accent} fontWeight="700" fontSize="15"/>
+                <label text="Balanced" textAlignment="center" color={muted} fontSize="11" marginTop="5"/>
+              </stacklayout>
+              <stacklayout col={2} on:tap={()=>selectOCRQuality('best')} backgroundColor={ocrQuality==='best'?mint:'#F6F8F7'} borderWidth="1" borderColor={ocrQuality==='best'?accent:'#E1E9E5'} borderRadius="12" padding="12">
+                <label text={ocrQuality==='best'?'✓ High':'High'} textAlignment="center" color={accent} fontWeight="700" fontSize="15"/>
+                <label text="Accurate" textAlignment="center" color={muted} fontSize="11" marginTop="5"/>
+              </stacklayout>
+            </gridlayout>
+            <label text={ocrQualityDescription} color={ink} fontSize="12" textWrap={true} marginTop="15"/>
+            <label text={'OCR languages: '+ocrLanguageNames} color={muted} fontSize="12" textWrap={true} marginTop="9"/>
+            <label text={ocrInstalled?'✓ Selected model files installed':'↓ Language model download needed'} color={ocrInstalled?accent:'#A16A28'} fontSize="12" fontWeight="700" textWrap={true} marginTop="9"/>
+            <mdbutton text={ocrDownloading?'Preparing OCR models...':'Download missing language files'} isEnabled={!ocrDownloading} backgroundColor={mint} color={accent} marginTop="10" on:tap={downloadOCRModels}/>
+            <label text="Changing quality will not update older scans. Run OCR again from the scanner to use the newly selected model." color={muted} fontSize="11" textWrap={true} marginTop="8"/>
+          </stacklayout>
           <stacklayout backgroundColor={white} borderRadius="16" padding="19">
             <label text="What this app stores" color={ink} fontSize="17" fontWeight="700"/>
             <label text="• Scans remain in the scanner's local repository.\n• HomeDoc stores confirmed metadata, not OCR bodies.\n• The local metadata store is not yet encrypted." color={muted} fontSize="13" textWrap={true} marginTop="13"/>

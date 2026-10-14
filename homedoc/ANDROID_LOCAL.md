@@ -90,3 +90,15 @@ In another terminal use `/home/baba/tmp/tmp/homedoc_ai/scrcpy/scrcpy -s emulator
 These camera tests confirm a live camera device/preview connection, **not** the image quality or OCR accuracy of a real printed bill. Do not use the webcam for private documents when screen sharing.
 
 Sources: [Android official emulator command line camera options](https://developer.android.com/studio/run/emulator-commandline), [NativeScript Linux development setup](https://docs.nativescript.org/setup/linux).
+
+## HomeDoc OCR quality preferences
+
+On Android, open **HomeDoc AI → Settings → OCR quality**:
+
+- **Low / Fast:** Tesseract `tessdata_fast` (favor speed).
+- **Medium / Balanced:** Tesseract `tessdata` (general-purpose).
+- **High / Accurate:** Tesseract `tessdata_best` (favor recognition quality, larger and slower).
+
+The chosen setting updates the original scanner's `ocrService.dataType` and is persisted in `ApplicationSettings` as `tesseract_datatype`. The HomeDoc Settings card reports which languages are selected and whether the associated language files are present. **Download missing language files** uses the scanner's own download handler and asks for confirmation.
+
+The scanner's OCR language list remains managed by the original OCR interface. The new setting affects future OCR passes, not documents already processed. In emulator testing, all three selections changed the persisted model, and the English fast model was downloaded successfully (~3.9 MB).
