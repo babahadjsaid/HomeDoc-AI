@@ -8,6 +8,9 @@
     import { getRecords, removeRecord, upsertRecord, type HomeDocCategory, type HomeDocRecord } from './store';
 
     type ScannedDoc = { id: string; name: string; text: string; pageCount: number; manual?:boolean };
+    // The dashboard is the app's root page; it has no previous screen.
+    // A HomeDoc screen opened from the scanner may optionally navigate back.
+    export let allowReturnToScanner: boolean = false;
     type View = 'home'|'documents'|'add'|'dates'|'settings'|'review';
     const cat: HomeDocCategory[] = ['bill','receipt','warranty','insurance','letter','other'];
     const bg='#F5F7F6',ink='#17333C',accent='#145E55',mint='#E8F4EF',muted='#728583',white='#FFFFFF';
@@ -109,7 +112,7 @@
 
 <page actionBarHidden={true} backgroundColor={bg}>
   <gridlayout rows="auto,*,auto">
-    <CActionBar row={0} title="HomeDoc AI" forceCanGoBack={true} />
+    <CActionBar row={0} title="HomeDoc AI" disableBackButton={!allowReturnToScanner} />
     <scrollview row={1}>
       <stacklayout padding="18" backgroundColor={bg}>
         {#if view==='home'}

@@ -32,7 +32,7 @@
     async function openHomeDoc() {
         try {
             const Hub = (await import('~/homedoc/HomeDocHub.svelte')).default;
-            homeDocNavigate({ page: Hub });
+            homeDocNavigate({ page: Hub, props: { allowReturnToScanner: true } });
         } catch (error) { showError(error); }
     }
     let { colorOnBackground, colorOnSurfaceVariant } = $colors;
