@@ -5,20 +5,20 @@
 ## What works
 
 - Original document scanning code from OSS Document Scanner.
-- A new HomeDoc screen reachable from the document list, reading existing OCR text.
+- The HomeDoc dashboard opens at app launch, with five native sections (Home, Documents, Add, Dates, Settings). The original scanner is accessible via Add → Open scanner; its list also has a HomeDoc shortcut.
 - Conservative offline extraction of due dates, document types and amounts; manual confirmation before saving.
 - Optional **development-only** AI proxy in `homedoc/server`, not enabled by default.
 - A standalone browser UI demonstration at `homedoc/preview/index.html`.
 
-## Automated build
+## Android build and emulator
 
-**Actions → HomeDoc AI - iOS Simulator → Run workflow.**
+The earlier experimental GitHub-hosted iOS workflow was removed. Android development and testing use **the Linux laptop locally**.
 
-The macOS workflow runs Node tests, downloads the original scanner's large iOS OCR libraries, installs the upstream-compatible NativeScript CLI, and **attempts an unsigned iOS Simulator build**. If it succeeds, find `HomeDocAI-iOS-Simulator` under **Workflow run → Artifacts**. This ZIP contains a Simulator `.app` and **cannot be installed directly on a real iPhone**.
+See [Android local build and emulator instructions](homedoc/ANDROID_LOCAL.md). This project uses custom NativeScript, Android OpenCV/Tesseract binaries and Git submodules, so the upstream [build setup](Readme.md) also applies.
 
-The original project's custom native dependencies can cause CI build failures; these should be diagnosed from the Actions log. This pipeline intentionally does not claim a signed IPA or TestFlight distribution.
+A verified synthetic TARI test PDF is in `homedoc/fixtures/`; 18 automated tests pass, and the Android emulator successfully imported it, ran OCR and extracted EUR 73.20 / 2027-07-31.
 
-For getting onto an actual iPhone, read **[homedoc/INSTALL_FROM_GITHUB.md](homedoc/INSTALL_FROM_GITHUB.md)**. A Mac with Xcode and a free Apple account can sign for local personal-device testing. TestFlight/cloud device signing normally requires Apple Developer Program membership and configured signing assets.
+The HomeDoc Android development package name is `dev.babahadjsaid.homedocai`.
 
 ## Developer tests
 
@@ -41,5 +41,7 @@ python3 -m http.server 8000 --directory homedoc
 ## Attribution and license
 
 Original OSS Document Scanner source by its respective contributors: see `COPYING` and upstream [repository](https://github.com/ossappscollective/OSS-DocumentScanner). HomeDoc overlay license: `homedoc/LICENSE`. This is an independent project, not an official upstream release.
+
+**Prototype differences:** Native Android does not yet implement the web prototype's `.ics` calendar export. The Android app has real scanner access and a five-section interface, whereas the browser demo uses pasted OCR text and browser storage.
 
 **Security warning:** Current local metadata storage is not encrypted. Use fake documents while testing; do not deploy the dev AI proxy on the open internet without authentication, HTTPS, rate limits and an appropriate privacy review.

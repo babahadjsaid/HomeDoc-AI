@@ -1,0 +1,38 @@
+FACSIMILE TARI 2027
+Avviso simulato per la prova HomeDoc AI
+DOCUMENTO DI TEST - NON VALIDO PER IL PAGAMENTO
+Bolletta TARI - Tassa sui rifiuti
+Ente fittizio: Comune Demo di Valleverde (inesistente)
+Numero avviso
+SIM-TARI-2027-00427
+Protocollo
+DEMO/2027/009184
+Identificativo pagamento (IUV)
+SIM-0000-0000-7320
+Data emissione
+2027-06-10
+Periodo di riferimento
+01/01/2027 - 31/12/2027
+Intestatario
+Mario Esempio (persona inventata)
+Importo da pagare: EUR 73,20
+Data di scadenza: 2027-07-31
+Scadenza prima di agosto 2027 (31 luglio 2027)
+DETTAGLIO DELLA SIMULAZIONE
+Quota fissa (esempio)
+EUR 28,00
+Quota variabile (esempio)
+EUR 45,20
+Totale da pagare
+EUR 73,20
+Perche viene richiesto questo importo?
+La TARI e una tassa comunale associata al servizio di gestione dei rifiuti urbani. Per
+questo esercizio sono stati inventati aliquote, riferimenti e dettagli: il documento non
+descrive una posizione fiscale reale.
+Come pagare un vero avviso TARI
+Per un avviso autentico, usare esclusivamente le istruzioni del proprio Comune e i canali
+ufficiali indicati nell avviso (per esempio pagoPA, se previsto). Non usare i riferimenti SIM
+presenti in questo facsimile: non esiste un pagamento da eseguire.
+Nessun IBAN, QR o codice valido e presente in questo esempio.
+SIMULAZIONE / TEST DATA - HomeDoc AI
+Tutti i dati di questo avviso sono inventati. Non e una richiesta di pagamento.

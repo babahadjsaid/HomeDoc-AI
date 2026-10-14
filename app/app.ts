@@ -229,7 +229,7 @@ try {
     } else if (CARD_APP) {
         Comp = await import('~/components/list/CardsList.svelte');
     } else {
-        Comp = await import('~/components/list/DocumentsList.svelte');
+        Comp = await import('~/homedoc/HomeDocHub.svelte');
     }
     // svelteNative(Comp.default, {});
     // initializeDom();
